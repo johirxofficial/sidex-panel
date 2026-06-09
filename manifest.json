@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "sidex-panel",
+  "version": "1.0",
+  "description": "Edge-like professional side panel with mobile view and custom dashboard.",
+  "permissions": [
+    "sidePanel",
+    "declarativeNetRequest",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_title": "Open sidex-panel"
+  },
+  "declarative_net_request": {
+    "rule_resources": [{
+      "id": "ruleset_1",
+      "enabled": true,
+      "path": "rules.json"
+    }]
+  }
+}
