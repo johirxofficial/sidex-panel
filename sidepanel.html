@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sidex-panel</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+
+  <div class="nav-bar">
+    <button id="btn-home" title="Home">🏠</button>
+    <input type="text" id="url-input" placeholder="Enter URL (e.g., google.com)...">
+    <button id="btn-go" title="Open Site">➔</button>
+    <button id="btn-popup" title="Pop-out Full Window">↗️</button>
+  </div>
+
+  <div class="tab-bar" id="tab-bar">
+    <div class="tab active" data-tab="home">Dashboard</div>
+  </div>
+
+  <div class="content-area">
+    <div id="view-home" class="view-panel active">
+      <div class="aurora-bg"></div>
+      <div class="dashboard-container">
+        <h2>Sidex Panel Shortcuts</h2>
+        
+        <div class="shortcuts-grid" id="shortcuts-grid">
+          </div>
+
+        <div class="add-site-form">
+          <h3>Add Custom Site</h3>
+          <input type="text" id="new-title" placeholder="Site Name...">
+          <input type="text" id="new-url" placeholder="https://example.com...">
+          <button id="btn-add-site">Add to Dashboard</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="view-iframe-container" class="view-panel">
+      </div>
+  </div>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>
