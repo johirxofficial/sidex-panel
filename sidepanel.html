@@ -3,42 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>sidex-panel</title>
+  <title>SideX Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="sidepanel.css">
 </head>
 <body>
+  <div id="app">
 
-  <div class="nav-bar">
-    <button id="btn-home" title="Home">🏠</button>
-    <input type="text" id="url-input" placeholder="Enter URL (e.g., google.com)...">
-    <button id="btn-go" title="Open Site">➔</button>
-    <button id="btn-popup" title="Pop-out Full Window">↗️</button>
-  </div>
-
-  <div class="tab-bar" id="tab-bar">
-    <div class="tab active" data-tab="home">Dashboard</div>
-  </div>
-
-  <div class="content-area">
-    <div id="view-home" class="view-panel active">
-      <div class="aurora-bg"></div>
-      <div class="dashboard-container">
-        <h2>Sidex Panel Shortcuts</h2>
-        
-        <div class="shortcuts-grid" id="shortcuts-grid">
-          </div>
-
-        <div class="add-site-form">
-          <h3>Add Custom Site</h3>
-          <input type="text" id="new-title" placeholder="Site Name...">
-          <input type="text" id="new-url" placeholder="https://example.com...">
-          <button id="btn-add-site">Add to Dashboard</button>
-        </div>
+    <!-- ===== Top Navigation Bar ===== -->
+    <nav id="navbar">
+      <button id="btn-home" class="nav-btn" title="Home">
+        <span class="material-icons-round">home</span>
+      </button>
+      <button id="btn-refresh" class="nav-btn" title="Refresh">
+        <span class="material-icons-round">refresh</span>
+      </button>
+      <div id="url-bar">
+        <span class="material-icons-round" id="url-icon">search</span>
+        <input
+          type="text"
+          id="url-input"
+          placeholder="Search or enter URL"
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <button id="btn-go" class="nav-btn go-btn" title="Navigate">
+          <span class="material-icons-round">arrow_forward</span>
+        </button>
       </div>
+      <div id="nav-actions">
+        <button id="btn-view-mode" class="nav-btn" title="Toggle mobile view">
+          <span class="material-icons-round">devices</span>
+        </button>
+        <button id="btn-popout" class="nav-btn" title="Pop out window">
+          <span class="material-icons-round">open_in_new</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ===== Tab Strip ===== -->
+    <div id="tab-strip">
+      <div id="tabs-container"></div>
+      <button id="btn-new-tab" class="nav-btn tab-add-btn" title="New tab">
+        <span class="material-icons-round">add</span>
+      </button>
     </div>
 
-    <div id="view-iframe-container" class="view-panel">
+    <!-- ===== Main Content ===== -->
+    <main id="main-content">
+
+      <!-- Home Dashboard -->
+      <div id="home-view">
+        <div class="home-header">
+          <div class="home-logo">
+            <span class="material-icons-round logo-icon">dashboard</span>
+          </div>
+          <h1 class="home-title">SideX Panel</h1>
+          <p class="home-subtitle">Your personal side panel workspace</p>
+        </div>
+
+        <section class="dashboard-section">
+          <h2 class="section-label">Quick Access</h2>
+          <div id="shortcuts-grid"></div>
+        </section>
+
+        <section class="dashboard-section">
+          <h2 class="section-label">My Stations</h2>
+          <div id="stations-grid"></div>
+          <button id="btn-add-station" class="add-station-btn">
+            <span class="material-icons-round">add_circle_outline</span>
+            <span>Add Station</span>
+          </button>
+        </section>
       </div>
+
+      <!-- Web View (iframes) -->
+      <div id="web-view"></div>
+
+      <!-- Loading Overlay -->
+      <div id="loading-overlay" class="hidden">
+        <div class="loader-ring"></div>
+      </div>
+
+      <!-- Iframe Error Overlay -->
+      <div id="iframe-error" class="hidden">
+        <span class="material-icons-round error-icon">public_off</span>
+        <p class="error-text">This site blocked embedding.</p>
+        <a id="error-open-link" href="#" target="_blank" class="error-link">
+          <span class="material-icons-round">open_in_browser</span>
+          Open in new tab
+        </a>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ===== Add Station Modal ===== -->
+  <div id="station-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add Station</h3>
+        <button id="btn-close-modal" class="nav-btn">
+          <span class="material-icons-round">close</span>
+        </button>
+      </div>
+      <form id="station-form" autocomplete="off">
+        <div class="form-group">
+          <label for="input-title">Name</label>
+          <input type="text" id="input-title" placeholder="e.g. Notion" required>
+        </div>
+        <div class="form-group">
+          <label for="input-url">URL</label>
+          <input type="url" id="input-url" placeholder="https://example.com" required>
+        </div>
+        <button type="submit" class="submit-btn">
+          <span class="material-icons-round">add</span>
+          Add Station
+        </button>
+      </form>
+    </div>
   </div>
 
   <script src="sidepanel.js"></script>
